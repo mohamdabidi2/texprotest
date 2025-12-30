@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT US | TEXPRO CORP</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/premium-styles.css">
+    
+    <style>
+        /* Brand Carousel Styles */
+        .brand-carousel {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            background: #f8f9fa;
+            padding: 40px 0;
+        }
+        
+        .carousel-track {
+            display: flex;
+            animation: scroll 20s linear infinite;
+            width: calc(200% + 40px);
+        }
+        
+        .brand-item {
+            flex: 0 0 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            height: 80px;
+        }
+        
+        .brand-item img {
+            max-width: 100%;
+            max-height: 60px;
+            object-fit: contain;
+            filter: grayscale(100%) brightness(0.7);
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .brand-item img:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+        
+        @media (max-width: 768px) {
+            .brand-item {
+                flex: 0 0 20%;
+            }
+            
+            .brand-item img {
+                max-height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Texpro Corp Logo">
+            </a>
+            
+            <nav class="nav">
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link" data-i18n="nav-home">ACCUEIL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link active" data-i18n="nav-about">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="departement.html" class="nav-link" data-i18n="nav-department">DEPARTEMENT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="certificat.html" class="nav-link" data-i18n="nav-certificate">CERTIFICAT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="showroom.html" class="nav-link" data-i18n="nav-showroom">SHOWROOM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="social-story.html" class="nav-link" data-i18n="nav-social">SOCIAL STORY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link" data-i18n="nav-contact">CONTACT</a>
+                    </li>
+                    <!-- Language Switcher -->
+                    <li class="nav-item language-switcher-item">
+                        <div class="language-switcher">
+                            <a href="#" class="lang-link active" data-lang="fr">FR</a>
+                            <span class="lang-separator">|</span>
+                            <a href="#" class="lang-link" data-lang="en">EN</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+<section class="page-title">
+    <div class="container">
+        <h1 data-aos="fade-down" data-aos-duration="800" data-aos-offset="100" data-aos-easing="ease-out">ABOUT US</h1>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section class="section texture-overlay">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h2 data-i18n="about-story">Our Story</h2>
+                    <p data-i18n="about-text1">TEXPRO CORP a branch of Kassab Group, is a textile manufacturer since 1998 located in Tunisia in the EUR-MED zone. Was founded with the association of European partners.</p>
+                    <p data-i18n="about-text2">Over the years, Texpro Corp has grown rapidly to become a fully integrated GOTS, BSCI certified garment manufacturer covering the full production cycle on sustainability of all along the process from fabrics to manufacturing, washing and dying.</p>
+                    <p data-i18n="about-text3">The company is specialized in denim and flat garment manufacturing and the product portfolio includes casual dresses, shirts, jackets, pants and coats for men and women.</p>
+                </div>
+                <div class="about-image" data-aos="fade-left" data-aos-delay="100">
+                    <img src="images/about2.jpeg" alt="Textile Manufacturing">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-12" data-aos="fade-up">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" data-i18n="mission-title">Our Mission</h3>
+                            <p data-i18n="mission-text">At Texpro Corp, we are increasingly partnering with our customers to ensure high consistent quality on the products and invest on innovation to help improve the environmental impact by consistently producing responsibly produced products.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-12" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" data-i18n="vision-title">Our Vision</h3>
+                            <p data-i18n="vision-text">To be a leading textile manufacturer known for quality, innovation, and sustainability. We strive to create value for our customers through exceptional products while maintaining the highest standards of environmental and social responsibility.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Partners Section -->
+    <section class="section about-section">
+        <div class="container">
+            <h2 data-i18n="brand-partners">Our Brand Partners</h2>
+            <p class="text-center" data-aos="fade-up" data-aos-delay="100" data-i18n="brand-partners-text">We are proud to work with some of the world's most respected brands in the fashion industry.</p>
+            
+            <div class="brand-carousel" data-aos="fade-up" data-aos-delay="200">
+                <div class="carousel-track">
+                    <!-- First set of images -->
+                    <div class="brand-item">
+                        <img src="images/brands/MISS SIXTY.jpg" alt="Miss Sixty">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/BOGNER.png" alt="Bogner">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/Boden.png" alt="Boden">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/Lee Cooper.png" alt="Lee Cooper">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/Energie.png" alt="Energie">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/sissyboy.png" alt="Sissy Boy">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/janeblueparis.png" alt="Jane Blue Paris">
+                    </div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="brand-item">
+                        <img src="images/brands/IKKS.png" alt="IKKS">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/VISTULA.png" alt="Vistula">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/OXBOW.jpg" alt="Oxbow">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/ajckwills.png" alt="Jack Wills">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/cop. copine.png" alt="Cop Copine">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/Hod Paris.jpeg" alt="Hod Paris">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/MKT Studio.webp" alt="MKT Studio">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/MISS SIXTY.jpg" alt="Miss Sixty">
+                    </div>
+                    <div class="brand-item">
+                        <img src="images/brands/BOGNER.png" alt="Bogner">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="section">
+        <div class="container">
+            <div class="quote" data-aos="fade-up">
+                <p data-i18n="footer-slogan">NOTHING IS MORE EXPENSIVE THAN A BAD QUALITY.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h4 class="footer-title">TEXPRO CORP</h4>
+                <p data-i18n="footer-company-desc-about">Textile manufacturer since 1998 located in Tunisia in the EUR-MED zone.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/texprocorp/" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title" data-i18n="footer-quick-links">Quick Links</h4>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="index.html" data-i18n="footer-home">Home</a></li>
+                    <li class="footer-link"><a href="about.html" data-i18n="footer-about">About Us</a></li>
+                    <li class="footer-link"><a href="departement.html" data-i18n="footer-departments">Departments</a></li>
+                    <li class="footer-link"><a href="certificat.html" data-i18n="footer-certificates">Certificates</a></li>
+                    <li class="footer-link"><a href="showroom.html" data-i18n="footer-showroom">Showroom</a></li>
+                    <li class="footer-link"><a href="social-story.html" data-i18n="footer-social">Social Story</a></li>
+                    <li class="footer-link"><a href="contact.html" data-i18n="footer-contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-title" data-i18n="footer-contact-info">Contact Us</h4>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <div>
+                        <p>Av. Habib Bourguiba-5015 Bouhjar</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt contact-icon"></i>
+                    <div>
+                        <p><a href="tel:+21673434250" style="color: var(--secondary-color);">+216 73 434 250</a> / <a href="tel:+21673434249" style="color: var(--secondary-color);">+216 73 434 249</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div>
+                        <p>info@texprocorp.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 TEXPRO CORP. <span data-i18n="footer-copyright">All Rights Reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- Translation JS -->
+    <script src="js/translations.js"></script>
+    
+    <script src="js/premium-main.js"></script>
+</body>
+</html>
+

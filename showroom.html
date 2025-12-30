@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showroom | TEXPRO CORP</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/logo.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/premium-styles.css">
+
+    <!-- Image Modal CSS -->
+    <style>
+        /* Image Modal Styles */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .image-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            animation: zoomIn 0.3s ease;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #ccc;
+        }
+
+        .modal-title {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            right: 0;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .gallery-img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Custom Gallery Layout - 300px Height with Auto Width */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            width: auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-title {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .modal-content {
+                max-width: 95%;
+                max-height: 85%;
+            }
+
+            .modal-close {
+                top: -35px;
+                font-size: 30px;
+            }
+
+            .modal-title {
+                bottom: -35px;
+                font-size: 16px;
+            }
+
+            .gallery {
+                gap: 15px;
+                padding: 15px 0;
+            }
+
+            .gallery-item {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-item {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Texpro Corp Logo">
+            </a>
+
+            <nav class="nav">
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link" data-i18n="nav-home">ACCUEIL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link" data-i18n="nav-about">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="departement.html" class="nav-link" data-i18n="nav-department">DEPARTEMENT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="certificat.html" class="nav-link" data-i18n="nav-certificate">CERTIFICAT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="showroom.html" class="nav-link active" data-i18n="nav-showroom">SHOWROOM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="social-story.html" class="nav-link" data-i18n="nav-social">SOCIAL STORY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link" data-i18n="nav-contact">CONTACT</a>
+                    </li>
+                    <!-- Language Switcher -->
+                    <li class="nav-item language-switcher-item">
+                        <div class="language-switcher">
+                            <a href="#" class="lang-link active" data-lang="fr">FR</a>
+                            <span class="lang-separator">|</span>
+                            <a href="#" class="lang-link" data-lang="en">EN</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="page-title">
+        <div class="container">
+            <h1 data-aos="fade-up" data-i18n="page-showroom">OUR KNOW HOW</h1>
+        </div>
+    </section>
+
+    <!-- Gallery Filter Section -->
+    <section class="section texture-overlay">
+        <div class="container">
+            <div class="gallery-filter" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all" data-i18n="filter-all">All</button>
+                <button class="filter-btn" data-filter="women" data-i18n="filter-women">Women</button>
+                <button class="filter-btn" data-filter="men" data-i18n="filter-men">Men</button>
+                <button class="filter-btn" data-filter="kids" data-i18n="filter-kids">Kids</button>
+            </div>
+
+            <div class="gallery">
+                <!-- Women's Item -->
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images/WOMAN SHOOTING/image00001.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="200">
+                    <img src="images/WOMAN SHOOTING/image00002.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="300">
+                    <img src="images/WOMAN SHOOTING/image00003.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="400">
+                    <img src="images/WOMAN SHOOTING/image00004.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="500">
+                    <img src="images/WOMAN SHOOTING/image00005.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="600">
+                    <img src="images/WOMAN SHOOTING/image00006.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="700">
+                    <img src="images/WOMAN SHOOTING/image00007.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="800">
+                    <img src="images/WOMAN SHOOTING/image00008.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="900">
+                    <img src="images/WOMAN SHOOTING/image00009.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1000">
+                    <img src="images/WOMAN SHOOTING/image00010.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1100">
+                    <img src="images/WOMAN SHOOTING/image00011.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1200">
+                    <img src="images/WOMAN SHOOTING/image00012.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1300">
+                    <img src="images/WOMAN SHOOTING/image00013.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1400">
+                    <img src="images/WOMAN SHOOTING/image00014.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1500">
+                    <img src="images/WOMAN SHOOTING/image00015.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1600">
+                    <img src="images/WOMAN SHOOTING/image00016.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1700">
+                    <img src="images/WOMAN SHOOTING/image00017.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1800">
+                    <img src="images/WOMAN SHOOTING/image00018.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="1900">
+                    <img src="images/WOMAN SHOOTING/image00019.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2000">
+                    <img src="images/WOMAN SHOOTING/image00020.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2100">
+                    <img src="images/WOMAN SHOOTING/image00021.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2200">
+                    <img src="images/WOMAN SHOOTING/image00022.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2300">
+                    <img src="images/WOMAN SHOOTING/image00023.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2400">
+                    <img src="images/WOMAN SHOOTING/image00024.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2500">
+                    <img src="images/WOMAN SHOOTING/image00025.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2600">
+                    <img src="images/WOMAN SHOOTING/image00026.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2700">
+                    <img src="images/WOMAN SHOOTING/image00027.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2800">
+                    <img src="images/WOMAN SHOOTING/image00028.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="2900">
+                    <img src="images/WOMAN SHOOTING/image00029.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="3000">
+                    <img src="images/WOMAN SHOOTING/image00030.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="women" data-aos="fade-up" data-aos-delay="3100">
+                    <img src="images/WOMAN SHOOTING/image00031.jpeg" alt="Women's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+
+                <!-- Men's Item -->
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="200">
+                    <img src="images/MEN SHOOTING/image00001.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="300">
+                    <img src="images/MEN SHOOTING/image00002.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="400">
+                    <img src="images/MEN SHOOTING/image00003.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="500">
+                    <img src="images/MEN SHOOTING/image00004.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="600">
+                    <img src="images/MEN SHOOTING/image00005.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="700">
+                    <img src="images/MEN SHOOTING/image00006.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="800">
+                    <img src="images/MEN SHOOTING/image00007.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="900">
+                    <img src="images/MEN SHOOTING/image00008.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1000">
+                    <img src="images/MEN SHOOTING/image00009.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1100">
+                    <img src="images/MEN SHOOTING/image00010.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1200">
+                    <img src="images/MEN SHOOTING/image00011.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1300">
+                    <img src="images/MEN SHOOTING/image00012.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1400">
+                    <img src="images/MEN SHOOTING/image00013.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1500">
+                    <img src="images/MEN SHOOTING/image00014.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1600">
+                    <img src="images/MEN SHOOTING/image00015.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1700">
+                    <img src="images/MEN SHOOTING/image00016.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="men" data-aos="fade-up" data-aos-delay="1800">
+                    <img src="images/MEN SHOOTING/image00017.jpeg" alt="Men's Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+
+                <!-- Kids Item -->
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="100">
+                    <img src="images/KIDS/image00001.jpeg" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="200">
+                    <img src="images/KIDS/image00002.jpeg" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="300">
+                    <img src="images/KIDS/image00003.jpeg" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="400">
+                    <img src="images/KIDS/image00004.jpeg" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="500">
+                    <img src="images/KIDS/image00005.jpeg" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="600">
+                    <img src="images/KIDS/image00006.jpeg" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="700">
+                    <img src="images/KIDS/image00007.jpeg" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="800">
+                    <img src="images/KIDS/image00008.png" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+                <div class="gallery-item" data-category="kids" data-aos="fade-up" data-aos-delay="900">
+                    <img src="images/KIDS/image00009.jpeg" alt="Kids Item" class="gallery-img">
+                    <div class="gallery-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <img id="modalImage" class="modal-image" src="" alt="">
+            <h4 id="modalTitle" class="modal-title"></h4>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3 class="footer-title">TEXPRO CORP</h3>
+                <p data-i18n="footer-company-desc">Textile manufacturer since 1998 based in Tunisia in the EUR-MED zone. Specialized in denim and flat garment manufacturing.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/texprocorp/" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3 class="footer-title" data-i18n="footer-quick-links">Quick Links</h3>
+                <ul class="footer-links">
+                    <li class="footer-link"><a href="index.html" data-i18n="footer-home">Home</a></li>
+                    <li class="footer-link"><a href="about.html" data-i18n="footer-about">About Us</a></li>
+                    <li class="footer-link"><a href="departement.html" data-i18n="footer-departments">Departments</a></li>
+                    <li class="footer-link"><a href="certificat.html" data-i18n="footer-certificates">Certificates</a></li>
+                    <li class="footer-link"><a href="showroom.html" data-i18n="footer-showroom">Showroom</a></li>
+                    <li class="footer-link"><a href="social-story.html" data-i18n="footer-social">Social Story</a></li>
+                    <li class="footer-link"><a href="contact.html" data-i18n="footer-contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-title" data-i18n="footer-contact-info">Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Av. Habib Bourguiba-5015 Bouhjar</p>
+                <p><i class="fas fa-phone"></i> <a href="tel:+21673434250" style="color: rgba(255, 255, 255, 0.7);">+216 73 434 250</a> / <a href="tel:+21673434249" style="color: rgba(255, 255, 255, 0.7);">+216 73 434 249</a></p>
+                <p><i class="fas fa-fax"></i> +216 73 434 251</p>
+                <p><i class="fas fa-globe"></i> www.texprocorp.com</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 TEXPRO CORP. <span data-i18n="footer-copyright">All Rights Reserved.</span></p>
+                <p data-i18n="footer-slogan">NOTHING IS MORE EXPENSIVE THAN A BAD QUALITY.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!-- Translation JS -->
+    <script src="js/translations.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/premium-main.js"></script>
+
+    <!-- Gallery Filter Script and Modal Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease',
+                once: true
+            });
+
+            // Gallery Filter
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterBtns.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    // Get filter value
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    // Filter gallery items
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'scale(1)';
+                            }, 100);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Image Modal Functionality
+            const galleryImages = document.querySelectorAll('.gallery-img');
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+
+            // Add click event to all gallery images
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function () {
+                    const imageSrc = this.src;
+                    const imageAlt = this.alt;
+                    // Try to get .gallery-title, but handle if not present
+                    let imageTitle = imageAlt;
+                    const titleElement = this.parentElement.querySelector('.gallery-title');
+                    if (titleElement && typeof titleElement.textContent === 'string') {
+                        imageTitle = titleElement.textContent;
+                    }
+                    // Set modal content
+                    modalImage.src = imageSrc;
+                    modalImage.alt = imageAlt;
+                    modalTitle.textContent = imageTitle;
+
+                    // Show modal
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                });
+            });
+
+            // Close modal when clicking outside the image
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+        });
+
+        // Close modal function
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    </script>
+</body>
+
+</html>
