@@ -5,8 +5,8 @@ const translations = {
         // Navigation
         'nav-home': 'ACCUEIL',
         'nav-about': 'À PROPOS',
-        'nav-department': 'DÉPARTEMENT',
-        'nav-certificate': 'CERTIFICAT',
+        'nav-department': 'DÉPARTEMENTS',
+        'nav-certificate': 'CERTIFICATS',
         'nav-showroom': 'SHOWROOM',
         'nav-social': 'SOCIAL STORY',
         'nav-contact': 'CONTACT',
@@ -175,8 +175,8 @@ const translations = {
         // Navigation
         'nav-home': 'HOME',
         'nav-about': 'ABOUT US',
-        'nav-department': 'DEPARTMENT',
-        'nav-certificate': 'CERTIFICATE',
+        'nav-department': 'DEPARTMENTS',
+        'nav-certificate': 'CERTIFICATES',
         'nav-showroom': 'SHOWROOM',
         'nav-social': 'SOCIAL STORY',
         'nav-contact': 'CONTACT',
