@@ -38,7 +38,7 @@ const translations = {
         // About page
         'page-about': 'À PROPOS DE NOUS',
         'about-story': 'Notre Histoire',
-        'about-text1': 'TEXPRO CORP, une filiale du Groupe Kassab, est un fabricant de textiles depuis 1998 situé en Tunisie dans la zone EUR-MED. A été fondé en association avec des partenaires européens.',
+        'about-text1': 'TEXPRO CORP est un fabricant de textiles depuis 1998 situé en Tunisie dans la zone EUR-MED. A été fondé en association avec des partenaires européens.',
         'about-text2': 'Au fil des ans, Texpro Corp a rapidement évolué pour devenir un fabricant de vêtements entièrement intégré certifié GOTS, BSCI couvrant le cycle de production complet sur la durabilité de tout le processus, des tissus à la fabrication, au lavage et à la teinture.',
         'about-text3': 'L\'entreprise est spécialisée dans la fabrication de vêtements en denim et plats et le portefeuille de produits comprend des robes décontractées, des chemises, des vestes, des pantalons et des manteaux pour hommes et femmes.',
         'mission-title': 'Notre Mission',
@@ -186,7 +186,7 @@ const translations = {
         'hero-subtitle': 'Textile Manufacturers Since 1998',
         'btn-contact': 'Contact Us',
         'section-heritage': 'Our Heritage',
-        'heritage-text1': 'TEXPRO CORP a branch of Kassab Group, is a textile manufacturer since 1998 based in Tunisia in the EUR-MED zone. Was founded with the association of italian partners.',
+        'heritage-text1': 'TEXPRO CORP is a textile manufacturer since 1998 based in Tunisia in the EUR-MED zone. Was founded with the association of italian partners.',
         'heritage-text2': 'Over the years, Texpro Corp has grown rapidly to become an integrated apparel manufacturer certified with GOTS, BSCI, BCI, OCS pursuing the complete production cycle focussing on sustainability all along the process from fabrics to manufacturing, washing and dying.',
         'heritage-text3': 'The company is specialized in denim and flat garment manufacturing and the product portfolio includes casual dresses, shirts, jackets, pants and coats for men, women and kids.',
         'quote-text': 'At Texpro Corp, we are increasingly partnering with our customers to ensure high consistent quality on the products and invest on innovation to help improve the environmental impact by consistently producing responsibly produced products.',
@@ -208,7 +208,7 @@ const translations = {
         // About page
         'page-about': 'ABOUT US',
         'about-story': 'Our Story',
-        'about-text1': 'TEXPRO CORP a branch of Kassab Group, is a textile manufacturer since 1998 located in Tunisia in the EUR-MED zone. Was founded with the association of European partners.',
+        'about-text1': 'TEXPRO CORP is a textile manufacturer since 1998 located in Tunisia in the EUR-MED zone. Was founded with the association of European partners.',
         'about-text2': 'Over the years, Texpro Corp has grown rapidly to become a fully integrated GOTS, BSCI certified garment manufacturer covering the full production cycle on sustainability of all along the process from fabrics to manufacturing, washing and dying.',
         'about-text3': 'The company is specialized in denim and flat garment manufacturing and the product portfolio includes casual dresses, shirts, jackets, pants and coats for men and women.',
         'mission-title': 'Our Mission',
